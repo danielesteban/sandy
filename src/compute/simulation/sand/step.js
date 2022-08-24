@@ -44,7 +44,7 @@ fn main(@builtin(global_invocation_id) id : vec3<u32>) {
     }
     let nvoxel = getVoxel(npos);
     if (atomicCompareExchangeWeak(&data[nvoxel], 0, value).exchanged) {
-      atomicCompareExchangeWeak(&data[voxel], value, 0);
+      atomicStore(&data[voxel], 0);
       break;
     }
   }
